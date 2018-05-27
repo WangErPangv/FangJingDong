@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--登录-->
+            <RelativeLayout
+                android:id="@+id/login_pic"
+                android:background="@drawable/normal_regbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/my_linear_login"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/my_user_icon"
+                        app:placeholderImage="@drawable/user"
+                        app:actualImageScaleType="centerCrop"
+                        app:roundAsCircle="true"
+                        android:layout_marginLeft="@dimen/margin10"
+                        android:layout_width="@dimen/margin60"
+                        android:layout_height="@dimen/margin60" />
+
+                    <TextView
+                        android:id="@+id/my_user_name"
+                        android:layout_marginLeft="@dimen/margin10"
+                        android:textColor="#ffffff"
+                        android:text="登录/注册"
+                        android:textSize="@dimen/textSize18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/my_xx"
+                    android:layout_margin="@dimen/margin10"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/xx"
+                    android:layout_width="@dimen/margin30"
+                    android:layout_height="@dimen/margin30" />
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:layout_toLeftOf="@id/my_xx"
+                    android:src="@drawable/sz"
+                    android:layout_width="@dimen/margin30"
+                    android:layout_height="@dimen/margin30" />
+
+            </RelativeLayout>
+
+            <!--订单-->
+            <LinearLayout
+                android:layout_marginTop="11dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/myfx"
+                        android:src="@drawable/dfk"
+                        android:scaleType="centerInside"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+
+                    <ImageView
+                        android:id="@+id/mysh"
+                        android:src="@drawable/dsh"
+                        android:scaleType="centerInside"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:id="@+id/mypj"
+                        android:src="@drawable/dpj"
+                        android:scaleType="centerInside"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:id="@+id/myth"
+                        android:src="@drawable/th_sh"
+                        android:scaleType="centerInside"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:src="@drawable/mydd"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginTop="@dimen/margin5"
+                    android:background="#33000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/margin5"
+                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/myjd"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:src="@drawable/myyhq"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:src="@drawable/mybt"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:src="@drawable/mylpk"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+                    <ImageView
+                        android:src="@drawable/myqb"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/margin40" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:src="@drawable/timg"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="@dimen/margin15"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp" />
+
+                <!--为你推荐-->
+                <TextView
+                    android:textSize="@dimen/textSize18"
+                    android:gravity="center"
+                    android:padding="@dimen/margin5"
+                    android:background="#99ff44"
+                    android:textColor="#FF505F"
+                    android:text="为你推荐"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/tui_jian_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

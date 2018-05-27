@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".view.activity.SearchActivity">
+
+    <include layout="@layout/search_item" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="@dimen/margin5"
+        android:background="#e7e7e7" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin8"
+        android:text="热搜"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <wby.laowang.fangjingdong.view.custom.XCFlowLayout
+        android:id="@+id/search_liushi"
+        android:layout_marginTop="@dimen/margin10"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    </wby.laowang.fangjingdong.view.custom.XCFlowLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin8"
+        android:text="历史搜索"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="@dimen/margin5"
+        android:background="#e7e7e7" />
+
+    <ListView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/search_kong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin30"
+        android:text="清空历史搜索" />
+
+</LinearLayout>

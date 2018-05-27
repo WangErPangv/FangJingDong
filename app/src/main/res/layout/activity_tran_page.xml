@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.TranPageActivity">
+
+    <ImageView
+        android:src="@drawable/b1i"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/skip"
+        android:text="跳过>>"
+        android:textSize="@dimen/textSize16"
+        android:gravity="center"
+        android:layout_margin="@dimen/margin10"
+        android:background="#CDCDB4"
+        android:layout_width="@dimen/margin70"
+        android:layout_height="@dimen/margin40" />
+    <TextView
+        android:id="@+id/splash_time"
+        android:layout_margin="@dimen/margin10"
+        android:gravity="center"
+        android:textSize="@dimen/textSize20"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/tran_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
