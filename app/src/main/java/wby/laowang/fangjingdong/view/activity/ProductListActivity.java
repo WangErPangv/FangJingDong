@@ -31,7 +31,10 @@ import wby.laowang.fangjingdong.view.Iview.IProductList;
 import wby.laowang.fangjingdong.view.Iview.OnItemListener;
 import wby.laowang.fangjingdong.view.adapter.MyProductListAdapter;
 import wby.laowang.fangjingdong.view.adapter.MyProductListGridAdapter;
-
+/*
+* 在这个商品列表里应该有一个grid的适配器，这个欠缺了这个，只是使用了myProductListAdapter来做为两个的转换
+* 如果在后边有学会在更改
+* **/
 public class ProductListActivity extends AppCompatActivity implements IProductList {
 
     @BindView(R.id.product_finish)
@@ -49,7 +52,6 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
     Boolean flag = true;
     private List<ProductListBean.DataBean> plist;
     private MyProductListAdapter myProductListAdapter;
-    private MyProductListGridAdapter myProductListGridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,23 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
         PresenterFusion presenterFusion = new PresenterFusion();
         presenterFusion.showProductListToView(new ModelFusion(presenterFusion), this);
 
+        productSmart.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                ppage = 1;
+                plist.clear();
+                initDatas();
+            }
+        });
+
+        productSmart.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                ppage++;
+                initDatas();
+            }
+        });
+
     }
 
     @OnClick({R.id.product_finish, R.id.product_suo, R.id.product_change})
@@ -82,13 +101,11 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
 
                 if (flag) {
                     productRec.setLayoutManager(new GridLayoutManager(ProductListActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                    productRec.setAdapter(myProductListGridAdapter);
-                    myProductListGridAdapter.notifyDataSetChanged();
+                    myProductListAdapter.notifyDataSetChanged();
                     productChange.setImageResource(R.drawable.kind_liner);
                     flag = false;
                 } else {
                     productRec.setLayoutManager(new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false));
-                    productRec.setAdapter(myProductListAdapter);
                     myProductListAdapter.notifyDataSetChanged();
                     productChange.setImageResource(R.drawable.kind_grid);
                     flag = true;
@@ -102,42 +119,10 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
     public void showProductList(ProductListBean productListBean) {
         this.plist = productListBean.getData();
 
-        if (myProductListGridAdapter == null) {
-            myProductListGridAdapter = new MyProductListGridAdapter(ProductListActivity.this, plist);
-            productRec.setAdapter(myProductListGridAdapter);
-        } else {
-            myProductListGridAdapter.notifyDataSetChanged();
-        }
-
-        productSmart.finishRefresh(2000);
-        productSmart.finishLoadMore(2000);
-
-        productRec.setLayoutManager(new GridLayoutManager(ProductListActivity.this, 2, GridLayoutManager.VERTICAL, false));
-        myProductListGridAdapter = new MyProductListGridAdapter(ProductListActivity.this, plist);
-        productRec.setAdapter(myProductListGridAdapter);
-
-        //recyclerView滑动卡顿解决方案，利用RecyclerView内部方法
-        productRec.setHasFixedSize(true);
-        productRec.setNestedScrollingEnabled(false);
-
-        myProductListGridAdapter.setOnItemListener(new OnItemListener() {
-            @Override
-            public void OnItemClick(int position) {
-                int pid = plist.get(position).getPid();
-                Intent intent = new Intent(ProductListActivity.this, DetailActivity.class);
-                intent.putExtra("pid", pid);
-                startActivity(intent);
-            }
-
-            @Override
-            public void OnItemLongClick(int position) {
-
-            }
-        });
-
         if (myProductListAdapter == null) {
             myProductListAdapter = new MyProductListAdapter(ProductListActivity.this, plist);
             productRec.setAdapter(myProductListAdapter);
+
         } else {
             myProductListAdapter.notifyDataSetChanged();
         }
@@ -145,10 +130,16 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
         productSmart.finishRefresh(2000);
         productSmart.finishLoadMore(2000);
 
+        if (flag) {
+            productRec.setLayoutManager(new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false));
 
-        productRec.setLayoutManager(new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false));
+        } else {
+            productRec.setLayoutManager(new GridLayoutManager(ProductListActivity.this, 2, GridLayoutManager.VERTICAL, false));
+        }
+
         myProductListAdapter = new MyProductListAdapter(ProductListActivity.this, plist);
         productRec.setAdapter(myProductListAdapter);
+
         //recyclerView滑动卡顿解决方案，利用RecyclerView内部方法
         productRec.setHasFixedSize(true);
         productRec.setNestedScrollingEnabled(false);
@@ -168,32 +159,9 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
             }
         });
 
+
+
 }
-
-    @Override
-    public void showSmartre() {
-
-        productSmart.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshLayout) {
-                ppage = 1;
-                plist.clear();
-                initDatas();
-            }
-        });
-    }
-
-    @Override
-    public void showSmartload() {
-
-        productSmart.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshLayout) {
-                ppage++;
-                initDatas();
-            }
-        });
-    }
 
     @Override
     public String keywords() {

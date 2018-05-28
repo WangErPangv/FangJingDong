@@ -7,6 +7,9 @@ public interface IModel {
     //获取登录数据
     void getDataLogin(Map<String, String> map);
 
+    //获取注册数据
+    void getDataRegister(Map<String, String> map);
+
     //获取用户信息
     void getUser(String uid);
 
@@ -27,5 +30,8 @@ public interface IModel {
 
     //获取商品详情
     void getDataDetail(int pid);
+
+    //添加购物车
+    void getDataAddcart(Map<String, String> map);
 
 }

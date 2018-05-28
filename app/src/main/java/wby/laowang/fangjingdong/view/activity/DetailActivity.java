@@ -9,7 +9,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import java.util.ArrayList;
@@ -17,13 +17,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import wby.laowang.fangjingdong.R;
+import wby.laowang.fangjingdong.bean.AddCartBean;
 import wby.laowang.fangjingdong.bean.DetailBean;
 import wby.laowang.fangjingdong.model.ModelFusion;
 import wby.laowang.fangjingdong.presenter.PresenterFusion;
+import wby.laowang.fangjingdong.view.Iview.IAddCart;
 import wby.laowang.fangjingdong.view.Iview.IDetail;
 import wby.laowang.fangjingdong.view.holder.GlideImageLoader;
 
-public class DetailActivity extends AppCompatActivity implements IDetail {
+public class DetailActivity extends AppCompatActivity implements IDetail,IAddCart{
 
     @BindView(R.id.detai_back)
     ImageView detaiBack;
@@ -104,6 +106,21 @@ public class DetailActivity extends AppCompatActivity implements IDetail {
     }
 
     @Override
+    public void showAddcart(AddCartBean addCartBean) {
+        Toast.makeText(this,addCartBean.getMsg(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public String auid() {
+        return "10756";
+    }
+
+    @Override
+    public String apid() {
+        return String.valueOf(pid);
+    }
+
+    @Override
     public int pid() {
         return pid;
     }
@@ -122,6 +139,8 @@ public class DetailActivity extends AppCompatActivity implements IDetail {
                 startActivity(new Intent(this,ShoppCartActivity.class));
                 break;
             case R.id.detai_add_cart:
+                PresenterFusion presenterFusion = new PresenterFusion();
+                presenterFusion.showAddcartToView(new ModelFusion(presenterFusion),this);
                 break;
         }
     }

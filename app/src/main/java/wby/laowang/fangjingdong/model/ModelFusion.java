@@ -6,11 +6,13 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import wby.laowang.fangjingdong.bean.AddCartBean;
 import wby.laowang.fangjingdong.bean.DetailBean;
 import wby.laowang.fangjingdong.bean.FenleiBean;
 import wby.laowang.fangjingdong.bean.HomeBean;
 import wby.laowang.fangjingdong.bean.LoginBean;
 import wby.laowang.fangjingdong.bean.ProductListBean;
+import wby.laowang.fangjingdong.bean.RegisterBean;
 import wby.laowang.fangjingdong.bean.ShoppCartBean;
 import wby.laowang.fangjingdong.bean.SubBean;
 import wby.laowang.fangjingdong.bean.UserNameBean;
@@ -50,6 +52,40 @@ public class ModelFusion implements IModel {
                     public void onNext(LoginBean loginBean) {
 
                         iPresenter.getDataLogin(loginBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getDataRegister(Map<String, String> map) {
+
+        //网络请求
+        RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
+        MyService myService = retrofitUtil.createRequest(MyService.class);
+        Observable<RegisterBean> observable = myService.getregister(map);
+
+        //请求执行
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RegisterBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(RegisterBean registerBean) {
+                        iPresenter.getDataRegister(registerBean);
                     }
 
                     @Override
@@ -286,6 +322,40 @@ public class ModelFusion implements IModel {
                     @Override
                     public void onNext(DetailBean detailBean) {
                         iPresenter.getDataDetail(detailBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getDataAddcart(Map<String, String> map) {
+
+        //网络请求
+        RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
+        MyService myService = retrofitUtil.createRequest(MyService.class);
+        Observable<AddCartBean> observable = myService.getaddcart(map);
+
+        //请求执行
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AddCartBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AddCartBean addCartBean) {
+                        iPresenter.getDataAddcart(addCartBean);
                     }
 
                     @Override
