@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements IHome, IFenLei {
         MyHomeAdapter myHomeAdapter = new MyHomeAdapter(getActivity(), homeBean, fenleiBeanp);
         homeRec.setAdapter(myHomeAdapter);
         //recyclerView滑动卡顿解决方案，利用RecyclerView内部方法
-        homeRec.setHasFixedSize(true);
-        homeRec.setNestedScrollingEnabled(false);
+       /* homeRec.setHasFixedSize(true);
+        homeRec.setNestedScrollingEnabled(false);*/
     }
 }

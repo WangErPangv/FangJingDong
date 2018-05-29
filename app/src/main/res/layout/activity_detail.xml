@@ -38,7 +38,7 @@
         android:id="@+id/detai_banner"
         android:layout_below="@+id/detai_relative"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        android:layout_height="200dp"/>
 
     <TextView
         android:id="@+id/detai_title"

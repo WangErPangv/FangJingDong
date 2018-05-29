@@ -11,8 +11,8 @@
         android:layout_height="wrap_content" />
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/child_img"
-        android:layout_width="@dimen/margin90"
-        android:layout_height="@dimen/margin90" />
+        android:layout_width="@dimen/margin70"
+        android:layout_height="@dimen/margin70" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_gravity="center"
