@@ -40,14 +40,8 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.search_edit)
     EditText search_edit;
     private List<String> list;
+    private List<String> liulist;
     private MyHistoryListAdapter myHistoryListAdapter;
-    private String mNames[] = {
-            "应急启动电源", "餐桌", "粽子散装",
-            "智能手表", "摩托车配件", "批发方便面",
-            "王中王火腿", "手机", "桶装矿泉水",
-            "U盘64G", "机械革命电脑", "洗发水",
-            "护发素", "奶粉", "search", "logcat"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +50,17 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         list = new ArrayList<>();
+        liuContent();
         initChildViews();
+
+    }
+
+    public void liuContent(){
+        liulist = new ArrayList<>();
+        liulist.add( "应急启动电源");liulist.add( "餐桌");liulist.add( "粽子散装");
+        liulist.add( "智能手表");liulist.add( "摩托车配件");liulist.add( "批发方便面");
+        liulist.add( "王中王火腿");liulist.add( "机械革命电脑");liulist.add( "手机");
+        liulist.add( "连衣裙");liulist.add( "零食");liulist.add( "电脑");
 
     }
 
@@ -102,12 +106,27 @@ public class SearchActivity extends AppCompatActivity {
         lp.rightMargin = 5;
         lp.topMargin = 5;
         lp.bottomMargin = 5;
-        for (int i = 0; i < mNames.length; i++) {
-            TextView view = new TextView(this);
-            view.setText(mNames[i]);
+        for (int i = 0; i < liulist.size(); i++) {
+            final TextView view = new TextView(this);
+            view.setText(liulist.get(i));
             view.setTextColor(Color.WHITE);
             view.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_bg));
             searchLiushi.addView(view, lp);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String liuname = view.getText().toString();
+                    Toast.makeText(SearchActivity.this,liuname,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SearchActivity.this,ProductListActivity.class);
+                    intent.putExtra("keywords",liuname);
+                    if (liuname == null || liuname.equals("")){
+                        Toast.makeText(SearchActivity.this,"输入内容不能为空",Toast.LENGTH_SHORT).show();
+                    }else {
+                        startActivity(intent);
+                    }
+                }
+            });
         }
     }
 
