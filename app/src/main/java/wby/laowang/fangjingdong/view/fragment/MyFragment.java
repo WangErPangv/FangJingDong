@@ -113,7 +113,7 @@ public class MyFragment extends Fragment implements IHome {
                 }
             });
         }else {
-
+            myUserName.setText("登录/注册");
             myLinearLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

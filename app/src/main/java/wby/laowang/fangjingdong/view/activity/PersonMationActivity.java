@@ -21,6 +21,7 @@ public class PersonMationActivity extends AppCompatActivity {
     LinearLayout linearUpload;
     //SharedPreferences做判断值用
     private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,6 @@ public class PersonMationActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);//隐藏标题栏
         setContentView(R.layout.activity_person_mation);
         ButterKnife.bind(this);
-
-        //实例化SharedPreferences
-        preferences = getSharedPreferences("judge", Context.MODE_PRIVATE);
 
     }
 
@@ -47,13 +45,11 @@ public class PersonMationActivity extends AppCompatActivity {
 
     public void signOut(View view) {
 
-        boolean judgeValue = preferences.getBoolean("judgeValue", false);
-        preferences.getString("louid","");
-        if (!judgeValue){
-
-        }else {
-
-        }
+        //实例化SharedPreferences
+        preferences = getSharedPreferences("judge", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putBoolean("judgeValue",false);
+        editor.commit();
 
         finish();
     }
