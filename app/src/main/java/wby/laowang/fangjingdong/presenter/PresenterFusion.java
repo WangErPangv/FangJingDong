@@ -23,7 +23,6 @@ import wby.laowang.fangjingdong.view.Iview.IProductList;
 import wby.laowang.fangjingdong.view.Iview.IRegister;
 import wby.laowang.fangjingdong.view.Iview.IShoppCart;
 import wby.laowang.fangjingdong.view.Iview.ISub;
-import wby.laowang.fangjingdong.view.Iview.IUser;
 
 /**
  * Presenter的操作类
@@ -33,7 +32,6 @@ public class PresenterFusion implements IPresenter {
 
     private ILogin iLogin;
     private IRegister iRegister;
-    private IUser iUser;
     private IShoppCart iShoppCart;
     private IHome iHome;
     private IFenLei iFenLei;
@@ -61,12 +59,6 @@ public class PresenterFusion implements IPresenter {
         map.put("mobile", iRegister.mobile());
         map.put("password", iRegister.pass());
         iModel.getDataRegister(map);
-    }
-
-    @Override
-    public void showUserToview(IModel iModel, IUser iUser) {
-        this.iUser = iUser;
-        iModel.getUser(iUser.uid());
     }
 
     @Override
@@ -134,11 +126,6 @@ public class PresenterFusion implements IPresenter {
     }
 
     @Override
-    public void getDataUser(UserNameBean userNameBean) {
-        iUser.showUser(userNameBean);
-    }
-
-    @Override
     public void getDataShoppCart(ShoppCartBean shoppCartBean) {
         iShoppCart.showShoppCart(shoppCartBean);
     }
@@ -173,8 +160,4 @@ public class PresenterFusion implements IPresenter {
         iAddCart.showAddcart(addCartBean);
     }
 
-    @Override
-    public void getError(String error) {
-        iLogin.showLoginError(error);
-    }
 }

@@ -10,7 +10,6 @@ import wby.laowang.fangjingdong.bean.SubBean;
 import wby.laowang.fangjingdong.model.IModel;
 import wby.laowang.fangjingdong.bean.LoginBean;
 import wby.laowang.fangjingdong.bean.ShoppCartBean;
-import wby.laowang.fangjingdong.bean.UserNameBean;
 import wby.laowang.fangjingdong.view.Iview.IAddCart;
 import wby.laowang.fangjingdong.view.Iview.IDetail;
 import wby.laowang.fangjingdong.view.Iview.IFenLei;
@@ -20,7 +19,6 @@ import wby.laowang.fangjingdong.view.Iview.IProductList;
 import wby.laowang.fangjingdong.view.Iview.IRegister;
 import wby.laowang.fangjingdong.view.Iview.IShoppCart;
 import wby.laowang.fangjingdong.view.Iview.ISub;
-import wby.laowang.fangjingdong.view.Iview.IUser;
 
 public interface IPresenter {
 
@@ -29,9 +27,6 @@ public interface IPresenter {
 
     //p的注册请求数据
     void showRegisterToView(IModel iModel, IRegister iRegister);
-
-    //p的用户请求数据
-    void showUserToview(IModel iModel, IUser iUser);
 
     //p的购物车请求数据
     void showShoppCartToView(IModel iModel, IShoppCart iShoppCart);
@@ -59,8 +54,6 @@ public interface IPresenter {
 
     void getDataRegister(RegisterBean registerBean);
 
-    void getDataUser(UserNameBean userNameBean);
-
     void getDataShoppCart(ShoppCartBean shoppCartBean);
 
     void getDataHome(HomeBean homeBean);
@@ -75,6 +68,4 @@ public interface IPresenter {
 
     void getDataAddcart(AddCartBean addCartBean);
 
-    //接受异常
-    void getError(String error);
 }

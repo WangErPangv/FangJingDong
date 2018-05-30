@@ -10,9 +10,6 @@ public interface IModel {
     //获取注册数据
     void getDataRegister(Map<String, String> map);
 
-    //获取用户信息
-    void getUser(String uid);
-
     //获取购物车数据
     void getDataShoppCart(Map<String, String> map);
 

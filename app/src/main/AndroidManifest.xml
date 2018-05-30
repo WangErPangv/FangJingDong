@@ -36,7 +36,8 @@
         <activity android:name=".view.activity.ProductListActivity" />
         <activity android:name=".view.activity.DetailActivity" />
         <activity android:name=".view.activity.ShoppCartActivity" />
-        <activity android:name=".view.activity.RegisterActivity"></activity>
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.PersonMationActivity"></activity>
     </application>
 
 </manifest>

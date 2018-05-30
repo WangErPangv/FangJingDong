@@ -100,38 +100,6 @@ public class ModelFusion implements IModel {
                 });
     }
 
-    @Override
-    public void getUser(String uid) {
-
-        //网络请求
-        RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
-        MyService myService = retrofitUtil.createRequest(MyService.class);
-        Observable<UserNameBean> observable = myService.getuser(uid);
-        //请求执行
-        observable.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<UserNameBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(UserNameBean userNameBean) {
-                        iPresenter.getDataUser(userNameBean);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 
     @Override
     public void getDataShoppCart(Map<String, String> map) {

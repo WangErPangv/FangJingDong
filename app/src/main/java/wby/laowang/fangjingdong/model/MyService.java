@@ -27,9 +27,6 @@ public interface MyService {
     //注册
     @GET("user/reg")
     Observable<RegisterBean> getregister(@QueryMap Map<String, String> map);
-    //获取用户信息
-    @GET("user/getUserInfo")
-    Observable<UserNameBean> getuser(@Query("uid") String uid);
     //购物车
     @GET("product/getCarts")
     Observable<ShoppCartBean> getshoppcart(@QueryMap Map<String, String> map);

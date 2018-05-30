@@ -1,6 +1,8 @@
 package wby.laowang.fangjingdong.view.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,9 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import wby.laowang.fangjingdong.R;
@@ -28,8 +27,9 @@ import wby.laowang.fangjingdong.view.Iview.IHome;
 import wby.laowang.fangjingdong.view.Iview.OnItemListener;
 import wby.laowang.fangjingdong.view.activity.DetailActivity;
 import wby.laowang.fangjingdong.view.activity.LoginActivity;
+import wby.laowang.fangjingdong.view.activity.PersonMationActivity;
 import wby.laowang.fangjingdong.view.adapter.MySontuiAdapter;
-import wby.laowang.fangjingdong.view.message.MessageEvent;
+
 
 public class MyFragment extends Fragment implements IHome {
 
@@ -53,6 +53,7 @@ public class MyFragment extends Fragment implements IHome {
     ImageView myth;
     @BindView(R.id.tui_jian_recycler)
     RecyclerView tuiJianRecycler;
+    private SharedPreferences preferences;
 
     @Nullable
     @Override
@@ -60,26 +61,21 @@ public class MyFragment extends Fragment implements IHome {
 
         View view = inflater.inflate(R.layout.my_ment, container, false);
         ButterKnife.bind(this,view);
-        initdatas();
-        myUserName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), LoginActivity.class));
-            }
-        });
-        //注册事件
-        EventBus.getDefault().register(this);
+
+        initData();
 
         return view;
     }
 
-    public void initdatas(){
+    public void initData(){
+
         PresenterFusion presenterFusion = new PresenterFusion();
         presenterFusion.showHomeToView(new ModelFusion(presenterFusion),this);
     }
 
     @Override
     public void showHome(final HomeBean homeBean) {
+
         tuiJianRecycler.setLayoutManager(new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false));
         MySontuiAdapter mySontuiAdapter = new MySontuiAdapter(getActivity(),homeBean);
         tuiJianRecycler.setAdapter(mySontuiAdapter);
@@ -99,16 +95,34 @@ public class MyFragment extends Fragment implements IHome {
         });
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMoonEvent(MessageEvent messageEvent){
-        myUserName.setText(messageEvent.getMessage());
-    }
-
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //取消注册事件
-        EventBus.getDefault().unregister(this);
+    public void onResume() {
+        super.onResume();
+
+        preferences = getContext().getSharedPreferences("judge", Context.MODE_PRIVATE);
+        boolean judgeValue = preferences.getBoolean("judgeValue", false);
+        String username = preferences.getString("username", "登录/注册");
+
+        if (judgeValue){
+
+            myUserName.setText(username);
+            myLinearLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   startActivity(new Intent(getActivity(), PersonMationActivity.class));
+                }
+            });
+        }else {
+
+            myLinearLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+            });
+
+        }
+
     }
 
 }
